@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace CryptoService
 {
-    public static class CryptoService
+    public static class Crypto
     {
         private const int SaltByteSize = 256;
         private const int HashByteSize = 256;
@@ -31,7 +31,7 @@ namespace CryptoService
         public static bool IsValidPassword(string password, string storedSalt, string passHash)
         {
             byte[] salt = Convert.FromBase64String(storedSalt);
-            byte[] hash = CryptoService.ComputeHash(password, salt, 26531, 256);
+            byte[] hash = ComputeHash(password, salt, 26531, 256);
             byte[] numArray = Convert.FromBase64String(passHash);
             if (numArray.Length != hash.Length)
                 return false;
